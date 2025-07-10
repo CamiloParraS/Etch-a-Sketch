@@ -12,10 +12,11 @@ for (let i = 0; i < gridSize * gridSize; i++) {
   const cell = document.createElement("div");
   // GRID STYLING
   cell.classList.add("grid-cell");
-  cell.style.border = "1px solid #eee";
-  cell.style.minWidth = "40px";
-  cell.style.minHeight = "40px";
-  cell.style.margin = "1px";
+  cell.style.border = "1px solid #ddd";
+  cell.style.borderRadius = "2px";
+  cell.style.minWidth = "4rem";
+  cell.style.minHeight = "4rem";
+  cell.style.margin = "0.2rem";
   cell.style.backgroundColor = "white";
   container.appendChild(cell);
 }
