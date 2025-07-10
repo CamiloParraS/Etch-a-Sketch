@@ -10,7 +10,7 @@ const container = document.querySelector("#container");
 
 for (let i = 0; i < gridSize * gridSize; i++) {
   const cell = document.createElement("div");
-  // GRID STYLING
+  // CELL STYLING
   cell.classList.add("grid-cell");
   cell.style.border = "1px solid #ddd";
   cell.style.borderRadius = "0.3rem";
