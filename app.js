@@ -25,7 +25,10 @@ for (let i = 0; i < gridSize * gridSize; i++) {
   cell.addEventListener("mouseover", () => {
     cell.style.backgroundColor = "#333";
   });
-//   cell.addEventListener("mouseout", () => {
-//     cell.style.backgroundColor = "WHITE";
-//   });
+  //   cell.addEventListener("mouseout", () => {
+  //     cell.style.backgroundColor = "WHITE";
+  //   });
+  cell.addEventListener("click", () => {
+    cell.style.backgroundColor = "white";
+  });
 }
