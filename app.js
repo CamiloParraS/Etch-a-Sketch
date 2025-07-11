@@ -2,12 +2,17 @@
 
 const gridSize = 8; // DEFAULT VALUE
 const GRID_PIXEL_WIDTH = 400;
-let isMouseDown = false;
+let isDrawing = true; 
+let isErasing = false;
+let color = "#333";
+let isMouseButtonDown = false;
 
 // ========== DOM ELEMENTS ==========
 
 const container = document.querySelector("#container");
 const gridSizeBtn = document.querySelector("#grid-size-btn");
+const drawButton = document.querySelector("#drawing-btn");
+const eraserBtn = document.querySelector("#eraser-btn");
 
 // ========== GRID CREATION ==========
 
@@ -26,36 +31,39 @@ function createGrid(size) {
     cell.style.height = `${cellDimension}px`;
     cell.style.boxSizing = "border-box";
     cell.style.border = "1px solid #ddd";
-    //cell.style.borderRadius = "0.3rem";
+    cell.style.borderRadius = "0.1rem";
     //cell.style.margin = "0.01rem";
     cell.style.backgroundColor = "white";
     cell.style.transition = "background-color 0.2s ease-in-out";
     container.appendChild(cell);
+  }
+}
 
-    // HOVER STYLE
-    cell.addEventListener("click", () => {
-      cell.style.backgroundColor = "white";
-    });
+function handleCellInteraction(e) {
+  if (!e.target.classList.contains("grid-cell")) return;
+
+  if (isDrawing) {
+    e.target.style.backgroundColor = color;
+  } else if (isErasing) {
+    e.target.style.backgroundColor = "white";
   }
 }
 
 // ========== EVENT LISTENERS ==========
 
 container.addEventListener("mousedown", (e) => {
-  isMouseDown = true;
-  if (e.target.classList.contains("grid-cell")) {
-    e.target.style.backgroundColor = "#333";
-  }
+  isMouseButtonDown = true;
+  handleCellInteraction(e); 
   e.preventDefault();
 });
 
 window.addEventListener("mouseup", () => {
-  isMouseDown = false;
+  isMouseButtonDown = false;
 });
 
 container.addEventListener("mouseover", (e) => {
-  if (isMouseDown && e.target.classList.contains("grid-cell")) {
-    e.target.style.backgroundColor = "#333";
+  if (isMouseButtonDown) {
+    handleCellInteraction(e); 
   }
 });
 
@@ -66,6 +74,16 @@ gridSizeBtn.addEventListener("click", () => {
   } else {
     alert("Invalid size. Please enter a number between 1 and 100.");
   }
+});
+
+drawButton.addEventListener("click", () => {
+  isDrawing = true;
+  isErasing = false;
+});
+
+eraserBtn.addEventListener("click", () => {
+  isErasing = true;
+  isDrawing = false;
 });
 
 // ========== INITIALIZER ==========
