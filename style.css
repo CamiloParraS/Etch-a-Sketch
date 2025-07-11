@@ -22,8 +22,8 @@ h3 {
   display: flex;
   flex-wrap: wrap;
   width: 90vw;
-  max-width: 600px; 
-  aspect-ratio: 1 / 1; 
+  max-width: 800px; 
+  /* aspect-ratio: 1 / 1;  */
   margin: 2rem auto;
   padding: 0.5rem;
   border-radius: 1rem;
