@@ -67,3 +67,74 @@ button:active {
   gap: 1.5rem;
 }
 
+/* 
+Yoinked from https://uiverse.io/SelfMadeSystem/strange-cobra-12
+and modified by me
+ */
+
+#funky-btn {
+  display: block;
+  width: 100%;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  padding: 3px;
+  isolation: isolate;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+#funky-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 400%;
+  height: 100%;
+  background: linear-gradient(
+    115deg,
+    #4fcf70,
+    #fad648,
+    #a767e5,
+    #12bcfe,
+    #44ce7b
+  );
+  background-size: 25% 100%;
+  animation: an-at-keyframe-css-at-rule-that-translates-via-the-transform-property-the-background-by-negative-25-percent-of-its-width-so-that-it-gives-a-nice-border-animation_-We-use-the-translate-property-to-have-a-nice-transition-so-it_s-not-a-jerk-of-a-start-or-stop
+    0.75s linear infinite;
+  animation-play-state: paused;
+  translate: -5% 0%;
+  transition: translate 0.25s ease-out;
+}
+
+#funky-btn:hover::before {
+  animation-play-state: running;
+  transition-duration: 0.75s;
+  translate: 0% 0%;
+}
+
+@keyframes an-at-keyframe-css-at-rule-that-translates-via-the-transform-property-the-background-by-negative-25-percent-of-its-width-so-that-it-gives-a-nice-border-animation_-We-use-the-translate-property-to-have-a-nice-transition-so-it_s-not-a-jerk-of-a-start-or-stop {
+  to {
+    transform: translateX(-25%);
+  }
+}
+
+#funky-btn span {
+  position: relative;
+  display: block;
+  padding: 0.8rem 1.5rem;
+  background: #333;
+  border-radius: 0.5rem;
+  height: 100%;
+  transition: background-color 0.2s ease-in-out, transform 0.1s ease;
+  font-family: "Birthstone", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+#funky-btn:hover span {
+  background-color: #555;
+}
+#funky-btn:active span {
+  transform: translateY(2px);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}

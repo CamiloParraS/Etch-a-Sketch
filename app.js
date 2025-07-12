@@ -65,6 +65,8 @@ function handleCellInteraction(e) {
   }
 }
 
+// RANDOM COLOR FOR FUNKY MODE
+
 // ========== EVENT LISTENERS ==========
 
 container.addEventListener("mousedown", (e) => {

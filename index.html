@@ -12,31 +12,40 @@
     <link rel="stylesheet" type="text/css" href="style.css" />
     <link rel="icon" href="favicon.png" />
     <script src="app.js" defer></script>
+    <!-- FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Birthstone&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <div class="info">
-    <h1>Etch-A-Sketch</h1>
-    <div class="box-button">
-      <button type="button" id="grid-size-btn">
-        <span>Change Grid Size</span>
-      </button>
-    </div>
-    <div class="box-button">
-      <button type="button" id="drawing-btn">
-        <span>Draw</span>
-      </button>
-    </div>
-    <div class="box-button">
-      <button type="button" id="eraser-btn">
-        <span>Eraser</span>
-      </button>
+      <h1>Etch-A-Sketch</h1>
+      <div class="box-button">
+        <button type="button" id="grid-size-btn">
+          <span>Change Grid Size</span>
+        </button>
+      </div>
+      <div class="box-button">
+        <button type="button" id="drawing-btn">
+          <span>Draw</span>
+        </button>
+      </div>
+      <div class="box-button">
+        <button type="button" id="eraser-btn">
+          <span>Eraser</span>
+        </button>
+        <button type="button" id="funky-btn">
+          <span>Funky Mode</span>
+        </button>
+      </div>
       <div id="status">
         <h4>Currently: <span id="displayDrawingMode"></span></h4>
         <h4>Grid Size: <span id="displayGridSize"></span></h4>
       </div>
     </div>
-  </div>
-    <div id="container">
-    </div>
+    <div id="container"></div>
   </body>
 </html>
