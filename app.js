@@ -32,11 +32,26 @@ function createGrid(size) {
     cell.style.height = `${cellDimension}px`;
     cell.style.boxSizing = "border-box";
     cell.style.border = "1px solid #ddd";
-    cell.style.borderRadius = "0.1rem";
+    cell.style.borderRadius = "0.2rem";
     //cell.style.margin = "0.01rem";
     cell.style.backgroundColor = "white";
     cell.style.transition = "background-color 0.2s ease-in-out";
+    cell.style.zIndex = "1";
     container.appendChild(cell);
+
+    cell.addEventListener("mouseover", () => {
+      if (isMouseButtonDown) {
+        cell.style.scale = 1.05;
+        cell.style.boxShadow = "0 2px 4px rgba(0, 0, 0, 0.6)";
+        cell.style.zIndex = "2";
+      }
+    });
+
+    cell.addEventListener("mouseout", () => {
+      cell.style.scale = 1;
+      cell.style.boxShadow = "";
+      cell.style.zIndex = "1";
+    });
   }
 }
 
