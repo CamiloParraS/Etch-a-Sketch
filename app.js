@@ -10,8 +10,9 @@ let isMouseButtonDown = false;
 
 const container = document.querySelector("#container");
 const gridSizeBtn = document.querySelector("#grid-size-btn");
-const drawButton = document.querySelector("#drawing-btn");
+const drawBtn = document.querySelector("#drawing-btn");
 const eraserBtn = document.querySelector("#eraser-btn");
+const funkyBtn = document.querySelector("#funky-btn");
 const displayDrawingMode = document.querySelector("#displayDrawingMode");
 const displayGridSize = document.querySelector("#displayGridSize");
 
@@ -102,7 +103,7 @@ gridSizeBtn.addEventListener("click", () => {
   }
 });
 
-drawButton.addEventListener("click", () => {
+drawBtn.addEventListener("click", () => {
   currentMode = "draw";
   updateStatusDisplay();
 });
