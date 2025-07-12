@@ -2,8 +2,7 @@
 
 const gridSize = 8; // DEFAULT VALUE
 const GRID_PIXEL_WIDTH = 400;
-let isDrawing = true; 
-let isErasing = false;
+let currentMode = "draw";
 let color = "#333";
 let isMouseButtonDown = false;
 
@@ -13,10 +12,11 @@ const container = document.querySelector("#container");
 const gridSizeBtn = document.querySelector("#grid-size-btn");
 const drawButton = document.querySelector("#drawing-btn");
 const eraserBtn = document.querySelector("#eraser-btn");
-const displayDrawingMode = document.querySelector("#displayDrawingMode")
-const displayGridSize = document.querySelector("#displayGridSize")
+const displayDrawingMode = document.querySelector("#displayDrawingMode");
+const displayGridSize = document.querySelector("#displayGridSize");
 
 // ========== FUNCTIONS ==========
+
 function createGrid(size) {
   container.innerHTML = "";
   console.log("Creating grid");
@@ -43,9 +43,9 @@ function createGrid(size) {
 function handleCellInteraction(e) {
   if (!e.target.classList.contains("grid-cell")) return;
 
-  if (isDrawing) {
+  if (currentMode === "draw") {
     e.target.style.backgroundColor = color;
-  } else if (isErasing) {
+  } else if (currentMode === "erase") {
     e.target.style.backgroundColor = "white";
   }
 }
@@ -54,7 +54,7 @@ function handleCellInteraction(e) {
 
 container.addEventListener("mousedown", (e) => {
   isMouseButtonDown = true;
-  handleCellInteraction(e); 
+  handleCellInteraction(e);
   e.preventDefault();
 });
 
@@ -64,7 +64,7 @@ window.addEventListener("mouseup", () => {
 
 container.addEventListener("mouseover", (e) => {
   if (isMouseButtonDown) {
-    handleCellInteraction(e); 
+    handleCellInteraction(e);
   }
 });
 
@@ -78,14 +78,12 @@ gridSizeBtn.addEventListener("click", () => {
 });
 
 drawButton.addEventListener("click", () => {
-  isDrawing = true;
-  isErasing = false;
+  currentMode = "draw";
   displayDrawingMode.innerHTML = "Drawing";
 });
 
 eraserBtn.addEventListener("click", () => {
-  isErasing = true;
-  isDrawing = false;
+  currentMode = "erase";
   displayDrawingMode.innerHTML = "Erasing";
 });
 
