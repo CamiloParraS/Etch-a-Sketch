@@ -13,14 +13,15 @@ const container = document.querySelector("#container");
 const gridSizeBtn = document.querySelector("#grid-size-btn");
 const drawButton = document.querySelector("#drawing-btn");
 const eraserBtn = document.querySelector("#eraser-btn");
-
-// ========== GRID CREATION ==========
+const displayDrawingMode = document.querySelector("#displayDrawingMode")
+const displayGridSize = document.querySelector("#displayGridSize")
 
 // ========== FUNCTIONS ==========
 function createGrid(size) {
   container.innerHTML = "";
   console.log("Creating grid");
   const cellDimension = GRID_PIXEL_WIDTH / size;
+  displayGridSize.innerHTML = ` ${size} X ${size} `;
 
   for (let i = 0; i < size * size; i++) {
     const cell = document.createElement("div");
@@ -79,12 +80,15 @@ gridSizeBtn.addEventListener("click", () => {
 drawButton.addEventListener("click", () => {
   isDrawing = true;
   isErasing = false;
+  displayDrawingMode.innerHTML = "Drawing";
 });
 
 eraserBtn.addEventListener("click", () => {
   isErasing = true;
   isDrawing = false;
+  displayDrawingMode.innerHTML = "Erasing";
 });
 
 // ========== INITIALIZER ==========
 createGrid(gridSize);
+displayDrawingMode.innerHTML = "Drawing";
