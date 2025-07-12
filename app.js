@@ -64,7 +64,7 @@ function handleCellInteraction(e) {
   } else if (currentMode === "erase") {
     e.target.style.backgroundColor = "white";
   } else if (currentMode === "funky") {
-    e.target.style.backgroundColor = "Yellow";
+    e.target.style.backgroundColor = getRandomHexColor();
   }
 }
 
@@ -76,6 +76,12 @@ function updateStatusDisplay() {
 }
 
 // RANDOM COLOR FOR FUNKY MODE
+function getRandomHexColor() {
+  return '#' + Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0');
+}
+
+console.log(getRandomHexColor());
+
 
 // ========== EVENT LISTENERS ==========
 
