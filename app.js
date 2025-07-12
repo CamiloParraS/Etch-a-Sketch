@@ -1,6 +1,6 @@
 // ========== GLOBAL VARIABLES ==========
 
-const gridSize = 8; // DEFAULT VALUE
+let gridSize = 8; // DEFAULT VALUE
 const GRID_PIXEL_WIDTH = 400;
 let currentMode = "draw";
 let color = "#333";
@@ -63,14 +63,16 @@ function handleCellInteraction(e) {
     e.target.style.backgroundColor = color;
   } else if (currentMode === "erase") {
     e.target.style.backgroundColor = "white";
+  } else if (currentMode === "funky") {
+    e.target.style.backgroundColor = "Yellow";
   }
 }
 
 // UPDATE THE CURRENT MODE
-function updateStatusDisplay(size) {
+function updateStatusDisplay() {
   displayDrawingMode.innerHTML =
     currentMode.charAt(0).toUpperCase() + currentMode.slice(1);
-  displayGridSize.innerHTML = `${size} x ${size}`;
+  displayGridSize.innerHTML = `${gridSize} x ${gridSize}`;
 }
 
 // RANDOM COLOR FOR FUNKY MODE
@@ -94,10 +96,11 @@ container.addEventListener("mouseover", (e) => {
 });
 
 gridSizeBtn.addEventListener("click", () => {
-  const size = Number(prompt("Enter the size for the grid (1 - 100)"));
-  if (size >= 1 && size <= 100) {
-    createGrid(size);
-    updateStatusDisplay(size);
+  const newSize = Number(prompt("Enter the size for the grid (1 - 100)"));
+  if (newSize >= 1 && newSize <= 100) {
+    gridSize = newSize
+    createGrid(gridSize);
+    updateStatusDisplay();
   } else {
     alert("Invalid size. Please enter a number between 1 and 100.");
   }
@@ -113,7 +116,11 @@ eraserBtn.addEventListener("click", () => {
   updateStatusDisplay();
 });
 
+funkyBtn.addEventListener("click", () => {
+  currentMode = "funky";
+  updateStatusDisplay();
+});
+
 // ========== INITIALIZER ==========
 createGrid(gridSize);
-//displayDrawingMode.innerHTML = "Drawing";
-updateStatusDisplay(gridSize);
+updateStatusDisplay();
