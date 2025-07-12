@@ -21,7 +21,6 @@ function createGrid(size) {
   container.innerHTML = "";
   console.log("Creating grid");
   const cellDimension = GRID_PIXEL_WIDTH / size;
-  displayGridSize.innerHTML = ` ${size} X ${size} `;
 
   for (let i = 0; i < size * size; i++) {
     const cell = document.createElement("div");
@@ -53,6 +52,7 @@ function createGrid(size) {
       cell.style.zIndex = "1";
     });
   }
+  updateStatusDisplay();
 }
 
 function handleCellInteraction(e) {
@@ -63,6 +63,13 @@ function handleCellInteraction(e) {
   } else if (currentMode === "erase") {
     e.target.style.backgroundColor = "white";
   }
+}
+
+// UPDATE THE CURRENT MODE
+function updateStatusDisplay(size) {
+  displayDrawingMode.innerHTML =
+    currentMode.charAt(0).toUpperCase() + currentMode.slice(1);
+  displayGridSize.innerHTML = `${size} x ${size}`;
 }
 
 // RANDOM COLOR FOR FUNKY MODE
@@ -89,6 +96,7 @@ gridSizeBtn.addEventListener("click", () => {
   const size = Number(prompt("Enter the size for the grid (1 - 100)"));
   if (size >= 1 && size <= 100) {
     createGrid(size);
+    updateStatusDisplay(size);
   } else {
     alert("Invalid size. Please enter a number between 1 and 100.");
   }
@@ -96,14 +104,15 @@ gridSizeBtn.addEventListener("click", () => {
 
 drawButton.addEventListener("click", () => {
   currentMode = "draw";
-  displayDrawingMode.innerHTML = "Drawing";
+  updateStatusDisplay();
 });
 
 eraserBtn.addEventListener("click", () => {
   currentMode = "erase";
-  displayDrawingMode.innerHTML = "Erasing";
+  updateStatusDisplay();
 });
 
 // ========== INITIALIZER ==========
 createGrid(gridSize);
-displayDrawingMode.innerHTML = "Drawing";
+//displayDrawingMode.innerHTML = "Drawing";
+updateStatusDisplay(gridSize);
